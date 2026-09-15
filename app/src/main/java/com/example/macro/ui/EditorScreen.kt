@@ -2,6 +2,8 @@ package com.example.macro.ui
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
@@ -158,7 +160,8 @@ fun EditorScreen(viewModel: MacroViewModel, onBack: () -> Unit) {
 }
 
 @Composable
-private fun RecordingSurface(viewModel: MacroViewModel, recordingState: RecordingState) {
+@OptIn(ExperimentalComposeUiApi::class)
+private fun BoxScope.RecordingSurface(viewModel: MacroViewModel, recordingState: RecordingState) {
     Box(
         Modifier
             .fillMaxSize()
@@ -178,7 +181,7 @@ private fun RecordingSurface(viewModel: MacroViewModel, recordingState: Recordin
 }
 
 @Composable
-private fun RecordingOverlay(elapsedMs: Long, actionCount: Int, onStop: () -> Unit) {
+private fun BoxScope.RecordingOverlay(elapsedMs: Long, actionCount: Int, onStop: () -> Unit) {
     Row(
         Modifier
             .align(androidx.compose.ui.Alignment.TopStart)
@@ -198,7 +201,7 @@ private fun RecordingOverlay(elapsedMs: Long, actionCount: Int, onStop: () -> Un
 }
 
 @Composable
-private fun PlaybackOverlay(progress: com.example.macro.playback.PlaybackProgress, onPause: () -> Unit, onResume: () -> Unit, onStop: () -> Unit) {
+private fun BoxScope.PlaybackOverlay(progress: com.example.macro.playback.PlaybackProgress, onPause: () -> Unit, onResume: () -> Unit, onStop: () -> Unit) {
     Row(
         Modifier
             .align(androidx.compose.ui.Alignment.TopEnd)
